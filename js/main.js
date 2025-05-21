@@ -1,3 +1,29 @@
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!menuBtn.contains(e.target) && !navLinks.contains(e.target)) {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Close menu when clicking a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+});
+
 // Form Validation
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
@@ -10,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const email = document.getElementById('email').value.trim();
             const message = document.getElementById('message').value.trim();
             
-            // Form validation
+            // Simple validation
             if (!name || !email || !message) {
                 alert('Please fill in all fields');
                 return;
@@ -23,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-                // Form submission message
+            
+            // Form validation message
             alert('Thank you for your message! We will get back to you soon.');
             contactForm.reset();
         });
@@ -39,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const imgSrc = this.querySelector('img').src;
             const caption = this.querySelector('.gallery-caption').textContent;
             
-            // Modal
+            // Create modal
             const modal = document.createElement('div');
             modal.className = 'modal';
             modal.innerHTML = `
@@ -67,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Navigation Links Scrolling
+// Navigation links scrolling
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -87,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Modal CSSS
+// Modal CSS
 const style = document.createElement('style');
 style.textContent = `
     .modal {
